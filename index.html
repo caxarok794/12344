@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriOrder - Smart Food Service</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="app-container">
+
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i> Nutri<span>Order</span>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>Умное питание <br>для твоей энергии</h1>
+            <p>Выбирай блюда по КБЖУ, фильтруй по диете, забирай по QR-коду.</p>
+        </section>
+
+        <section class="filters-container">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="vegan">Vegan</button>
+            <button class="filter-btn" data-filter="keto">Keto</button>
+            <button class="filter-btn" data-filter="high-protein">High Protein</button>
+            <button class="filter-btn" data-filter="low-carb">Low Carb</button>
+        </section>
+
+        <main id="menu-grid" class="menu-grid">
+        </main>
+
+    </div>
+
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleCart()">&times;</span>
+            <h2>Ваш заказ</h2>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart-msg">Корзина пуста</p>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="total-price">Итого: <span id="cart-total">0</span> ₽</div>
+                <div class="kbju-total">
+                    <small>К: <span id="total-k">0</span> | Б: <span id="total-b">0</span> | Ж: <span id="total-zh">0</span> | У: <span id="total-u">0</span></small>
+                </div>
+                <button id="checkout-btn" class="checkout-btn" onclick="processCheckout()">Оформить предзаказ</button>
+            </div>
+
+            <div id="qr-section" class="qr-section hidden">
+                <h3>Заказ принят!</h3>
+                <p>Покажите этот QR-код на кассе для получения.</p>
+                <div id="qrcode"></div>
+                <p class="order-id">Заказ #<span id="order-id-display"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="bg.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
